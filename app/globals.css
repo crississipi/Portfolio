@@ -19,7 +19,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #161a1d;
-    --foreground: #ffeedd;
+    --foreground: #fdfffc;
   }
 }
 
@@ -31,4 +31,27 @@ body {
 
 * {
   outline: none !important;
+  user-select: none;
+}
+
+::-webkit-scrollbar { width: 5px !important; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #161a1d; border-radius: 10px; }
+
+button, a {
+  outline: none !important;
+  cursor: pointer;
+}
+
+@keyframes switchText {
+  0%, 30%{
+    display:  flex;
+  }
+  31%, 100% {
+    display: none;
+  }
+}
+
+.switch-text {
+  animation: switchText 12s infinite ease-in-out;
 }
