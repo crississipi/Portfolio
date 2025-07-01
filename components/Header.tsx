@@ -125,7 +125,7 @@ const Header = () => {
   return (
     <div className='h-20 w-full md:grid md:grid-cols-5 lg:grid-cols-3 flex md:items-end items-center justify-between text-lg z-50 md:px-10 px-5 pb-2'>
         <h1 className='md:col-span-2 lg:col-span-1 uppercase md:text-2xl text-xl text-nav-hover tracking-tighter'>Cris Julius Malipico</h1>
-        <div className='md:flex md:col-span-2 md:justify-center hidden'>
+        <div className='md:flex md:col-span-2 lg:col-span-1 md:justify-center hidden'>
           <NavLink refer='#home' section='Home'/>
           <NavLink refer='#crafts' section='Crafts'/>
         </div>
