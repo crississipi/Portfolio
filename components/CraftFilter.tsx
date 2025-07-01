@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React from 'react'
 import { HiArrowSmallLeft } from 'react-icons/hi2'
 import TechStackIcon from './TechStackIcon';
 import FilterButton from './FilterButton';

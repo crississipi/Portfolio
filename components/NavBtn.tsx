@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import React, { JSX } from 'react';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { IoLogoGithub } from 'react-icons/io';
