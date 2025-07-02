@@ -67,6 +67,7 @@ const Crafts = () => {
         {filteredProjects.map((proj, i) => (
           <div key={i} className='md:col-span-1 col-span-full h-full flex flex-col gap-5'>
             <FeaturedWork 
+              key={i}
               srcImage={proj.srcImage}
               icons={proj.icons}
               projName={proj.projName}

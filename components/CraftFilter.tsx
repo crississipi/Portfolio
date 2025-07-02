@@ -21,7 +21,7 @@ const CraftFilter: React.FC<CraftFilterProps> = ({ setShowFilter, showFilter, se
   const tech = ['html', 'css', 'javascript', 'php', 'reactjs', 'nextjs', 'threejs', 'vuejs', 'tailwind', 'typescript', 'laravel', 'nodejs', 'nestjs', 'expressjs', 'mysql'];
 
   return (
-    <div className={`h-[90vh] md:w-64 w-2/3 bg-whitish absolute ${ showFilter ? 'left-0' : '-left-full' } z-50 shadow-lg gap-5 flex flex-col p-3 ease-in-out duration-300 text-nav-hover`}>
+    <div className={`h-[90vh] md:w-64 w-2/3 bg-whitish absolute ${ showFilter ? 'left-0' : '-left-full' } z-50 shadow-lg gap-5 flex flex-col p-3 ease-in-out duration-500 text-nav-hover`}>
       <button className={`absolute -right-6 top-1/2 -translate-y-1/2 bg-whitish z-50 h-12 w-12 rounded-full flex items-center justify-center text-3xl text-blackish border-2 border-blackish shadow-lg hover:border-nav-hover hover:text-nav-hover pl-0 ease-in-out duration-300`} onClick={toggleFilter}>
         <HiArrowSmallLeft />
       </button>
