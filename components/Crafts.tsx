@@ -8,6 +8,17 @@ import { MdFilterList } from 'react-icons/md';
 const Crafts = () => {
   const projects = [
     {
+      srcImage: '/proj4-thumbnail.png',
+      icons: ['nextjs', 'nodejs', 'typescript', 'tailwind'],
+      projName: 'MMORPG Landing Page',
+      docuLink: 'https://mmorpg-landing-page.vercel.app/',
+      liveLink: 'https://github.com/crississipi/MMORPG-Landing-Page',
+      projDesc: "A visually immersive landing page for a high-fantasy MMORPG game, designed to captivate players at first glance. It features high-resolution character images, detailed visuals, and interactive voice lines that bring each hero to life. The experience showcases the game's rich lore, personality-driven design, and cinematic atmosphere—offering a powerful preview of the world players will enter.",
+      start: 'Jul 2025',
+      end: 'Jul 2025',
+      isLive: true
+    },
+    {
       srcImage: '/museum-app-img.jpeg',
       icons: ['threejs', 'nextjs', 'nodejs', 'typescript', 'tailwind'],
       projName: 'Interactive Museum App',
@@ -32,7 +43,7 @@ const Crafts = () => {
     {
       srcImage: '/pastry-shop.jpeg',
       icons: ['html', 'css', 'javascript', 'php', 'mysql'],
-      projName: 'Landlord Web App',
+      projName: 'Pastry Shop Web App',
       docuLink: 'https://github.com/crississipi/Pastry-Shop-Website',
       liveLink: '#',
       projDesc: 'Connaisseur de Patisserie is an e-commerce pastry shop website featuring seamless online ordering, interactive shop location maps, admin monitoring, and order processing.',
@@ -63,9 +74,9 @@ const Crafts = () => {
         <MdFilterList className='text-2xl'/>
         Filter
       </button>
-      <div className='h-full w-full grid md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none]'>
-        {filteredProjects.map((proj, i) => (
-          <div key={i} className='md:col-span-1 col-span-full h-full flex flex-col gap-5'>
+      <div className='h-full w-full overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none]'>
+        <div className='h-auto w-full grid md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-5'>
+          {filteredProjects.map((proj, i) => (
             <FeaturedWork 
               key={i}
               srcImage={proj.srcImage}
@@ -78,8 +89,8 @@ const Crafts = () => {
               end={proj.end}
               isLive={proj.isLive}
             />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
