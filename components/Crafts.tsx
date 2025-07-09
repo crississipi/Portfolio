@@ -13,8 +13,8 @@ const Crafts = () => {
       projName: 'MMORPG Landing Page',
       docuLink: 'https://mmorpg-landing-page.vercel.app/',
       liveLink: 'https://github.com/crississipi/MMORPG-Landing-Page',
-      projDesc: "A visually immersive landing page for a high-fantasy MMORPG game, designed to captivate players at first glance. It features high-resolution character images, detailed visuals, and interactive voice lines that bring each hero to life. The experience showcases the game's rich lore, personality-driven design, and cinematic atmosphere—offering a powerful preview of the world players will enter.",
-      start: 'Jul 2025',
+      projDesc: "A visually immersive landing page for a high-fantasy MMORPG game, designed to captivate players at first glance. It features high-resolution character images, detailed visuals, and interactive voice lines that bring each hero to life. The experience showcases the game's rich lore, personality-driven design, and cinematic atmosphere, offering a powerful preview of the world players will enter.",
+      start: 'Jun 2025',
       end: 'Jul 2025',
       isLive: true
     },
