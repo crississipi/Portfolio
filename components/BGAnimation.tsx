@@ -1,8 +1,34 @@
 "use client"
 import { AnimatePresence, motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const BGAnimation = () => {
+  const [orientation, setOrientation] = useState(10);
+  const [sequence, setSequence] = useState(5);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setOrientation(window.innerWidth < 728 ? 10 : 20);
+        setSequence(window.innerWidth < 728 ? 5 : 10);
+      };
+
+      handleResize();
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
       <AnimatePresence>
@@ -21,7 +47,7 @@ const BGAnimation = () => {
                     ease: 'easeInOut',
                     repeat: Infinity,
                     repeatType: 'loop',
-                    delay: ((i% window.innerWidth < 728 ? 10 : 20) / window.innerWidth < 728 ? 5 : 10) + i/75,
+                    delay: ((i% orientation) / sequence) + i/75,
                     repeatDelay: 10
                 }}
                 key={i} 
