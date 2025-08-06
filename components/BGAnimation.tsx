@@ -3,23 +3,24 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 
 const BGAnimation = () => {
-  const [orientation, setOrientation] = useState(window.innerWidth < 728 ? 10 : 20);
-  const [sequence, setSequence] = useState(window.innerWidth < 728 ? 5 : 10);
+  const [orientation, setOrientation] = useState(20);
+  const [sequence, setSequence] = useState(10);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setOrientation(window.innerWidth < 728 ? 10 : 20);
+        setSequence(window.innerWidth < 728 ? 5 : 10);
+      };
 
-    const handleResize = () => {
-      setOrientation(window.innerWidth < 728 ? 10 : 20);
-      setSequence(window.innerWidth < 728 ? 5 : 10);
-    };
+      handleResize();
 
-    window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
 
-    handleResize();
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
 
   return (
