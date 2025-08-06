@@ -40,7 +40,7 @@ const BGAnimation = () => {
                     ease: 'easeInOut',
                     repeat: Infinity,
                     repeatType: 'loop',
-                    delay: ((i% orientation) / sequence) + i/75,
+                    delay: ((i% window.innerWidth < 728 ? 10 : 20) / window.innerWidth < 728 ? 5 : 10) + i/75,
                     repeatDelay: 10
                 }}
                 key={i} 
