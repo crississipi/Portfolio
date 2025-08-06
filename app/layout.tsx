@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Share_Tech_Mono } from "next/font/google";
+import { Inclusive_Sans } from "next/font/google";
 import "./globals.css";
 
-const shareTechMono = Share_Tech_Mono({
+const inclusiveSans = Inclusive_Sans({
   weight: ["400"],
   subsets: ["latin"],
 });
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${shareTechMono}} antialiased`}
+        className={`${inclusiveSans} antialiased`}
       >
         {children}
       </body>

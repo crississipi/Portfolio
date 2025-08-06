@@ -1,19 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: rgba(242, 232, 207);
+  --background: #010b13;
   --foreground: #333333;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --color-whitish: #fdfffc;
-  --color-blackish: #999999;
-  --color-font-color: #333333;
-  --color-nav-hover: #161a1d;
+  --color-blackish: #002147;
+  --color-bg-color: #010b13;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,7 +23,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Inclusive Sans", sans-serif;
 }
 
 * {

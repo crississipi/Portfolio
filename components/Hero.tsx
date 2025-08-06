@@ -1,90 +1,126 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
-import NavBtn from './NavBtn'
-import HeroText from './HeroText'
-import { AnimatePresence, motion } from 'framer-motion'
-import { HiArrowSmallDown } from 'react-icons/hi2';
-
-const textData = [
-  {
-    text1: "Turning",
-    underlineText: "Ideas",
-    text2: "into Seamless",
-    boxText: "Digital Experiences",
-  },
-  {
-    text1: "Producing",
-    underlineText: "Tailored Solutions",
-    text2: "for",
-    boxText: "Complex Problems",
-  },
-  {
-    text1: "Maximizing",
-    underlineText: "Effort",
-    text2: "through Seamless",
-    boxText: "Digital Approach",
-  },
-];
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
+import NavBtn from "./NavBtn";
+import dynamic from "next/dynamic";
 
 const Hero = () => {
-  const [index, setIndex] = useState(0);
-
+  const [boxSize, setSize] = useState<[number, number, number]>([0, 0, 15]);
+  
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % textData.length);
-    }, 6000);
+    const handleResize = () => {
+      if(window.innerWidth < 728) {
+        setSize([0, 0, 40])
+      } else { setSize([0, 0, 25]) }
+    };
 
-    return () => clearInterval(interval);
+    // Set the initial size based on screen size
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
+  const Dice = dynamic(() => import('./Dice'), {loading: () => null})
+  
   return (
-    <section id='home' className='h-full w-full relative overflow-hidden flex items-center justify-center text-nav-hover'>
-      <div className='w-full h-full z-50 flex flex-col items-center justify-between px-5'>
-        <div className='md:w-4/5 w-full flex flex-col h-full justify-center relative'>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 2 }}
+    <section
+      id="home"
+      className="h-full w-full relative overflow-hidden flex items-center justify-center text-nav-hover"
+    >
+      <div className="w-full h-full z-50 flex flex-col items-center justify-between px-5">
+        <div className="h-full w-full flex justify-center absolute top-1/2 left-1/2 -translate-1/2">
+          <Canvas
+              className="w-full max-h-8/9 flex items-center justify-center"
+              camera={{ position: boxSize, fov: 50 }}
+              shadows
+              gl={{
+                antialias: true,
+                toneMapping: THREE.ACESFilmicToneMapping,
+                toneMappingExposure: 0.8,
+                outputColorSpace: THREE.SRGBColorSpace,
+              }}
             >
-              <HeroText
-                text1={textData[index].text1}
-                underlineText={textData[index].underlineText}
-                text2={textData[index].text2}
-                boxText={textData[index].boxText}
+              <ambientLight color="#002147" intensity={0.5} />
+              <hemisphereLight args={["#002147", "#002147", 0.3]} />
+              <directionalLight
+                color="#ffffff"
+                intensity={1}
+                position={[-10, 0, 10]}
+                castShadow
+                shadow-mapSize-width={512}
+                shadow-mapSize-height={512}
               />
-            </motion.div>
-          </AnimatePresence>
+              <directionalLight
+                color="#ffffff"
+                intensity={1}
+                position={[-10, 0, -10]}
+                castShadow
+                shadow-mapSize-width={512}
+                shadow-mapSize-height={512}
+              />
+              <Suspense fallback={null}>
+                <Dice 
+                  size={1} 
+                  text='Cris' 
+                  position={[-5, 1, 0]} 
+                  textPosition={[-2, -1, 2]} 
+                  textSize={1.5} 
+                  color="#ff0000"
+                  backText="Im a"
+                  backTextPos={[2,-1,-2]}
+                />
+                <Dice 
+                  size={2}  
+                  text='Julius' 
+                  position={[2.5, 1, 0]} 
+                  textPosition={[-2.5, -1, 2]} 
+                  textSize={1.5} 
+                  color="#00ff00"
+                  backText="Frontend"
+                  backTextPos={[4.5,-1,-2]}
+                />
+                <Dice 
+                  size={3} 
+                  text='Malipico' 
+                  position={[0, -3, 0]} 
+                  textPosition={[-5.5, -1, 2]} 
+                  textSize={2} 
+                  color="#ffea00"
+                  backText="Developer"
+                  backTextPos={[6.5,-1, -2]}
+                />
+              </Suspense>
+            </Canvas>
         </div>
-        <div className='flex flex-col items-center text-sm gap-3 md:gap-1'>
-          Explore my Works!
-          <a href='#crafts' className='h-14 w-14 rounded-full border border-blackish flex items-center justify-center text-4xl text-blackish hover:text-nav-hover hover:border-nav-hover ease-in-out duration-150 cursor-pointer'>
-            <HiArrowSmallDown className='mt-2 animate-bounce duration-300'/>
-          </a>
-        </div>
-        <div className='w-full flex flex-col md:mb-5 mb-24 gap-2'>
-          <NavBtn 
-            icon={0} 
-            link='https://www.linkedin.com/in/crismalipico12/'
-            label='in/crismalipico12/'
+
+        <div className="w-full flex flex-col md:mb-5 mb-24 gap-2">
+          <NavBtn
+            icon={0}
+            link="https://www.linkedin.com/in/crismalipico12/"
+            label="in/crismalipico12/"
           />
-          <NavBtn 
-            icon={1} 
-            link='https://github.com/crississipi'
-            label='github.com/crississipi'
+          <NavBtn
+            icon={1}
+            link="https://github.com/crississipi"
+            label="github.com/crississipi"
           />
-          <NavBtn 
-            icon={2} 
-            link='https://mail.google.com/mail/?view=cm&fs=1&to=crismalipico12@gmail.com'
-            label='crismalipico12@gmail.com'  
+          <NavBtn
+            icon={2}
+            link="https://mail.google.com/mail/?view=cm&fs=1&to=crismalipico12@gmail.com"
+            label="crismalipico12@gmail.com"
           />
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
