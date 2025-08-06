@@ -3,18 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 
 const BGAnimation = () => {
-  const [orientation, setOrientation] = useState<number>(0);
-  const [sequence, setSequence] = useState<number>(0);
+  const [orientation, setOrientation] = useState(useEffect(()=> { window.innerWidth < 728 ? 10 : 20 }));
+  const [sequence, setSequence] = useState(useEffect(() => { window.innerWidth < 728 ? 5 : 10 }));
   
-  useEffect(() => {
-    if (window.innerWidth < 728) {
-        setOrientation(10);
-        setSequence(5);
-    } else {
-        setOrientation(20);
-        setSequence(10);
-    }
-  })
   return (
       <AnimatePresence>
         <div id='squareCont' className='h-full w-full grid lg:grid-cols-20 grid-cols-10 items-center absolute -top-3'>
