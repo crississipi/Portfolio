@@ -1,6 +1,6 @@
 "use client";
 
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import NavBtn from "./NavBtn";

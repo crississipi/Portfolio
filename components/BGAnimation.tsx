@@ -1,6 +1,6 @@
 "use client"
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { useState } from 'react'
+import React from 'react'
 
 const BGAnimation = () => {
   const orientation = window.innerWidth < 728 ? 10 : 20;
