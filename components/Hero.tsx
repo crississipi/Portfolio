@@ -107,7 +107,7 @@ const Hero = () => {
             </h2>
             <h1 className='font-shippori uppercase tracking-tighter text-6xl md:text-8xl font-black leading-none text-white lg:text-left'>
               Cris Julius <br/>
-              <span className='text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-600'>Malipico</span>
+              <span className='text-transparent bg-clip-text bg-linear-to-r from-white via-zinc-400 to-zinc-600'>Malipico</span>
             </h1>
             <h2 className='text-2xl md:text-4xl font-bold text-white mt-1'>
               Full-Stack Developer
@@ -168,13 +168,13 @@ const Hero = () => {
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className='w-full bg-[#0B0D10]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-visible'
+          className='w-full bg-[#0B0D10]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden'
         >
           {/* Decorative glow */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#2ED3FF]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
           <div className='flex items-center gap-3 mb-8 relative z-10'>
-            <div className='p-3 rounded-xl bg-gradient-to-br from-[#2ED3FF]/20 to-[#8B5CF6]/20 border border-white/10'>
+            <div className='p-3 rounded-xl bg-linear-to-br from-[#2ED3FF]/20 to-[#8B5CF6]/20 border border-white/10'>
               <PiPaperPlaneTiltThin className='text-2xl text-[#2ED3FF]' />
             </div>
             <div>
@@ -197,7 +197,7 @@ const Hero = () => {
                     setFormData({ ...formData, name: e.target.value });
                     if (errors.name) setErrors({...errors, name: ''});
                   }}
-                  className={`w-full px-4 py-2.5 bg-black/40 border rounded-lg text-white placeholder:text-white/20 focus:outline-none transition-all ${errors.name ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-[#2ED3FF]/50 focus:bg-white/[0.03]'}`}
+                  className={`w-full px-4 py-2.5 bg-black/40 border rounded-lg text-white placeholder:text-white/20 focus:outline-none transition-all ${errors.name ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-[#2ED3FF]/50 focus:bg-white/3'}`}
                 />
                 {errors.name && <p className='text-xs text-red-500'>{errors.name}</p>}
               </div>
@@ -258,7 +258,7 @@ const Hero = () => {
                       if (errors.contact) setErrors({...errors, contact: ''});
                     }}
                     disabled={!selectedMode}
-                    className={`w-full px-4 py-2.5 bg-black/40 border rounded-lg text-white placeholder:text-white/20 focus:outline-none transition-all ${errors.contact ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-[#2ED3FF]/50 focus:bg-white/[0.03]'}`}
+                    className={`w-full px-4 py-2.5 bg-black/40 border rounded-lg text-white placeholder:text-white/20 focus:outline-none transition-all ${errors.contact ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-[#2ED3FF]/50 focus:bg-white/3'}`}
                   />
                   {errors.contact && <p className='text-xs text-red-500 mt-1'>{errors.contact}</p>}
                </div>
@@ -275,7 +275,7 @@ const Hero = () => {
                     onClick={() => setSelectedService(service)}
                     className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-all duration-200 ${
                       selectedService === service
-                        ? 'bg-gradient-to-r from-[#2ED3FF] to-[#8B5CF6] border-transparent text-white shadow-lg shadow-purple-500/20'
+                        ? 'bg-linear-to-r from-[#2ED3FF] to-[#8B5CF6] border-transparent text-white shadow-lg shadow-purple-500/20'
                         : 'bg-white/5 border-white/10 text-zinc-400 hover:text-white hover:border-white/20'
                     }`}
                   >
@@ -295,13 +295,13 @@ const Hero = () => {
                   setFormData({ ...formData, message: e.target.value });
                   if (errors.message) setErrors({...errors, message: ''});
                 }}
-                className={`w-full px-4 py-3 bg-black/40 border rounded-lg text-white placeholder:text-white/20 focus:outline-none transition-all resize-none h-24 text-sm ${errors.message ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-[#2ED3FF]/50 focus:bg-white/[0.03]'}`}
+                className={`w-full px-4 py-3 bg-black/40 border rounded-lg text-white placeholder:text-white/20 focus:outline-none transition-all resize-none h-24 text-sm ${errors.message ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-[#2ED3FF]/50 focus:bg-white/3'}`}
               />
               {errors.message && <p className='text-xs text-red-500'>{errors.message}</p>}
             </div>
 
             <div className="relative group mt-2">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#2ED3FF] via-[#8B5CF6] to-[#FF4FA3] rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-[#2ED3FF] via-[#8B5CF6] to-[#FF4FA3] rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
               <button
                 type="submit"
                 className="relative w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#0B0D10] rounded-xl leading-none text-white font-bold tracking-wide hover:bg-zinc-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"

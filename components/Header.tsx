@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] flex transition-all duration-300 pointer-events-none ${
+      className={`fixed top-0 left-0 right-0 z-100 flex transition-all duration-300 pointer-events-none ${
         isScrolled 
           ? 'justify-center md:justify-end pt-2 md:pt-4 md:pr-12' 
           : 'justify-center pt-4 md:pt-8'
@@ -54,7 +54,7 @@ const Header = () => {
           href="#about"
           className={`px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 text-sm font-medium rounded-full outline-0 overflow-hidden transition-all duration-300 ${
             isScrolled 
-              ? 'bg-gradient-to-r from-[#2ED3FF]/10 to-[#8B5CF6]/10 hover:from-[#2ED3FF]/20 hover:to-[#8B5CF6]/20 border border-white/5 text-white' 
+              ? 'bg-linear-to-r from-[#2ED3FF]/10 to-[#8B5CF6]/10 hover:from-[#2ED3FF]/20 hover:to-[#8B5CF6]/20 border border-white/5 text-white' 
               : 'bg-[#0B0D10] border border-white/10 text-white'
           }`}>
           <PiHandWavingThin className="text-lg" />

@@ -47,10 +47,10 @@ const About = () => {
           className='flex-1 flex flex-col gap-8'
         >
           <div className='space-y-4'>
-            <h2 className='font-shippori text-5xl md:text-7xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-500'>
+            <h2 className='font-shippori text-5xl md:text-7xl font-black uppercase text-transparent bg-clip-text bg-linear-to-r from-white via-zinc-200 to-zinc-500'>
               About Me
             </h2>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-[#2ED3FF] via-[#8B5CF6] to-[#FF4FA3] rounded-full"></div>
+            <div className="h-1 w-24 bg-linear-to-r from-[#2ED3FF] via-[#8B5CF6] to-[#FF4FA3] rounded-full"></div>
           </div>
           
           <div className='space-y-6 text-lg text-zinc-400 font-light leading-relaxed'>
@@ -105,7 +105,7 @@ const About = () => {
             </motion.div>
 
             <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#2ED3FF] via-[#8B5CF6] to-[#FF4FA3] rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-[#2ED3FF] via-[#8B5CF6] to-[#FF4FA3] rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
               <a 
                 href={resumeUrl} 
                 download
