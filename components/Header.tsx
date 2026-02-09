@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed border border-white max-w-screen top-0 left-0 right-0 z-100 flex transition-all duration-300 pointer-events-none ${
+      className={`fixed max-w-screen top-0 left-0 right-0 z-100 flex transition-all duration-300 pointer-events-none ${
         isScrolled 
           ? 'justify-center md:justify-end pt-2 md:pt-4 md:pr-12' 
           : 'justify-center pt-4 md:pt-8'

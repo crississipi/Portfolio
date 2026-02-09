@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiVercel, SiNodedotjs, SiPrisma, SiMysql, SiHostinger } from 'react-icons/si'
-import { PiArrowRight, PiCaretLeftBold, PiCaretRightBold, PiGithubLogo, PiGlobe } from 'react-icons/pi'
+import { PiArrowRight, PiCaretLeftBold, PiCaretRightBold, PiGithubLogo, PiGlobe, PiCircleNotch } from 'react-icons/pi'
 import Image from 'next/image'
 
 // Mock Data Structure
@@ -85,18 +85,24 @@ const projectsData = [
 const Projects = () => {
   const [selectedId, setSelectedId] = useState(projectsData[0].id);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const selectedProject = projectsData.find(p => p.id === selectedId) || projectsData[0];
 
   const handleNextSlide = () => {
+    if (isLoading) return;
+    setIsLoading(true);
     setCurrentSlide((prev) => (prev + 1) % selectedProject.snapshots.length);
   };
 
   const handlePrevSlide = () => {
+    if (isLoading) return;
+    setIsLoading(true);
     setCurrentSlide((prev) => (prev - 1 + selectedProject.snapshots.length) % selectedProject.snapshots.length);
   };
 
   const changeProject = (id: number) => {
+    setIsLoading(true);
     setSelectedId(id);
     setCurrentSlide(0);
   };
@@ -162,6 +168,21 @@ const Projects = () => {
               >
                 {/* Image Slider Container */}
                 <div className='relative w-full aspect-17/8 bg-[#141820] rounded-2xl overflow-hidden border border-white/10 group shadow-2xl'>
+                  
+                  {/* Loading Spinner */}
+                  <AnimatePresence>
+                    {isLoading && (
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 z-20 flex items-center justify-center bg-[#141820]"
+                        >
+                            <PiCircleNotch className="text-4xl text-[#2ED3FF] animate-spin" />
+                        </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   {/* Slide Content */}
                   <div className='absolute inset-0 flex items-center justify-center bg-linear-to-br from-[#1C2230] to-[#0B0D10]'>
                      <Image 
@@ -169,12 +190,13 @@ const Projects = () => {
                         alt="Project Snapshot" 
                         fill 
                         className="object-cover object-center" 
+                        onLoad={() => setIsLoading(false)}
+                        onLoadingComplete={() => setIsLoading(false)}
                      /> 
-                    
                   </div>
 
                   {/* Slider Controls */}
-                  <div className='absolute inset-x-0 bottom-0 p-4 flex justify-between items-end bg-linear-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                  <div className='absolute inset-x-0 bottom-0 p-4 flex justify-between items-end bg-linear-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30'>
                     <div className='flex gap-2'>
                         {selectedProject.snapshots.map((_, idx) => (
                            <div key={idx} className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-[#2ED3FF]' : 'w-2 bg-white/30'}`} />
@@ -182,10 +204,18 @@ const Projects = () => {
                     </div>
                     
                     <div className='flex gap-2 text-white'>
-                      <button onClick={handlePrevSlide} className='p-2 rounded-full bg-white/10 hover:bg-[#2ED3FF] hover:text-black backdrop-blur-md transition-all'>
+                      <button 
+                        onClick={handlePrevSlide} 
+                        disabled={isLoading}
+                        className='p-2 rounded-full bg-white/10 hover:bg-[#2ED3FF] hover:text-black backdrop-blur-md transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white/10 disabled:hover:text-white'
+                      >
                          <PiCaretLeftBold />
                       </button>
-                      <button onClick={handleNextSlide} className='p-2 rounded-full bg-white/10 hover:bg-[#2ED3FF] hover:text-black backdrop-blur-md transition-all'>
+                      <button 
+                        onClick={handleNextSlide} 
+                        disabled={isLoading}
+                        className='p-2 rounded-full bg-white/10 hover:bg-[#2ED3FF] hover:text-black backdrop-blur-md transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white/10 disabled:hover:text-white'
+                      >
                          <PiCaretRightBold />
                       </button>
                     </div>
