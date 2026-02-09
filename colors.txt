@@ -1,0 +1,11 @@
+Void Black #0B0D10
+Deep Charcoal #141820
+Graphite Shadow #1C2230
+Neon Amber #FF8A3D
+Burnt Signal Orange #E66A2C
+Cyber Pink #FF4FA3
+Muted Neon Rose #C93C7A
+Neon Violet #8B5CF6
+Deep Ultraviolet #4C3A8F
+Electric Cyan #2ED3FF
+Cool Neon Blue #1E8BFF

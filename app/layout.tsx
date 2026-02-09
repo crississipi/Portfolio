@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Zain, Commissioner, Shippori_Antique_B1 } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const zain = Zain({
+  weight: ["200", "300", "400", "700", "800", "900"],
   subsets: ["latin"],
+  variable: "--font-zain",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const shippori = Shippori_Antique_B1({
+  weight: ["400"],
   subsets: ["latin"],
+  variable: "--font-shippori",
+});
+
+const commissioner = Commissioner({
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-commissioner",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${zain.variable} ${commissioner.variable} ${shippori.variable} antialiased`}
       >
         {children}
       </body>
