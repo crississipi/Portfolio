@@ -1,28 +1,23 @@
 import type { Metadata } from "next";
-import { Zain, Commissioner, Shippori_Antique_B1 } from "next/font/google";
+import { Roboto, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const zain = Zain({
-  weight: ["200", "300", "400", "700", "800", "900"],
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
-  variable: "--font-zain",
+  variable: "--font-roboto",
 });
 
-const shippori = Shippori_Antique_B1({
-  weight: ["400"],
+const sourceSerif = Source_Serif_4({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-shippori",
-});
-
-const commissioner = Commissioner({
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  variable: "--font-commissioner",
+  variable: "--font-source-serif",
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Cris Julius Malipico",
-  description: "Full-Stack Web Developer | Crafting Seamless Digital Experiences with Pixel-Perfect Precision",
+  title: "Cris Julius Malipico | Portfolio",
+  description:
+    "Full-Stack Web Developer crafting fast, refined, and production-ready digital experiences.",
 };
 
 export default function RootLayout({
@@ -31,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${zain.variable} ${commissioner.variable} ${shippori.variable} antialiased`}
+        className={`${roboto.variable} ${sourceSerif.variable} min-h-screen bg-[#0a0a0a] text-white antialiased`}
       >
         {children}
       </body>

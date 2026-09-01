@@ -1,68 +1,70 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
-import { PiFolderOpenThin, PiHandWavingThin, PiHouseThin, PiUserThin } from 'react-icons/pi'
+import { useEffect, useState } from "react";
+import {
+  PiFolderOpenThin,
+  PiHandWavingThin,
+  PiHouseThin,
+  PiUserThin,
+} from "react-icons/pi";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight = document.querySelector('.hero')?.clientHeight || 0
-      if (window.scrollY > heroHeight / 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }
+      const heroHeight = document.querySelector(".hero")?.clientHeight ?? 0;
+      setIsScrolled(window.scrollY > heroHeight * 0.15);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navClass =
+    "flex items-center justify-center rounded-full border border-white/10 bg-[#111111]/80 p-1.5 shadow-[0_20px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl";
 
   return (
     <header
-      className={`fixed max-w-screen top-0 left-0 right-0 z-100 flex transition-all duration-300 pointer-events-none ${
-        isScrolled 
-          ? 'justify-center md:justify-end pt-2 md:pt-4 md:pr-12' 
-          : 'justify-center pt-4 md:pt-8'
+      className={`fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 transition-all duration-300 md:px-8 md:pt-6 ${
+        isScrolled ? "translate-y-0" : "translate-y-0"
       }`}
     >
-      <div
-        className={`pointer-events-auto w-max rounded-full flex items-center gap-1 md:gap-2 p-1.5 border transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-[#0B0D10]/80 backdrop-blur-md border-white/10 shadow-lg shadow-black/20 scale-90 md:scale-90' 
-            : 'bg-transparent border-transparent scale-100'
-        }`}
-      >
-        <a
-          href="#hero"
-          className={`p-2 md:p-3 rounded-full outline-0 overflow-hidden transition-all duration-300 ${isScrolled ? 'hover:bg-white/10' : 'bg-[#0B0D10]/50 hover:bg-[#0B0D10] border border-white/5'} text-white/80 hover:text-white group`}>
-          <PiHouseThin className="text-lg md:text-xl group-hover:text-[#2ED3FF] transition-colors" />
-        </a>
-        <a
-          href="#projects"
-          className={`p-2 md:p-3 rounded-full outline-0 overflow-hidden transition-all duration-300 ${isScrolled ? 'hover:bg-white/10' : 'bg-[#0B0D10]/50 hover:bg-[#0B0D10] border border-white/5'} text-white/80 hover:text-white group`}>
-          <PiFolderOpenThin className="text-lg md:text-xl group-hover:text-[#8B5CF6] transition-colors" />
-        </a>
-        <a
-          href="#about"
-          className={`p-2 md:p-3 rounded-full outline-0 overflow-hidden transition-all duration-300 ${isScrolled ? 'hover:bg-white/10' : 'bg-[#0B0D10]/50 hover:bg-[#0B0D10] border border-white/5'} text-white/80 hover:text-white group`}>
-          <PiUserThin className="text-lg md:text-xl group-hover:text-[#FF4FA3] transition-colors" />
-        </a>
-        <a
-          href="#about"
-          className={`px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 text-sm font-medium rounded-full outline-0 overflow-hidden transition-all duration-300 ${
-            isScrolled 
-              ? 'bg-linear-to-r from-[#2ED3FF]/10 to-[#8B5CF6]/10 hover:from-[#2ED3FF]/20 hover:to-[#8B5CF6]/20 border border-white/5 text-white' 
-              : 'bg-[#0B0D10] border border-white/10 text-white'
-          }`}>
-          <PiHandWavingThin className="text-lg" />
-          <span className="hidden md:inline">Get in Touch</span>
-        </a>
-      </div>
+      <nav className={navClass} aria-label="Main navigation">
+        <div className="flex items-center gap-1.5 md:gap-2">
+          <a
+            href="#hero"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-200 transition hover:bg-white/8 hover:text-white md:h-11 md:w-11"
+            aria-label="Home"
+          >
+            <PiHouseThin className="text-lg md:text-xl" />
+          </a>
+          <a
+            href="#projects"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-200 transition hover:bg-white/8 hover:text-white md:h-11 md:w-11"
+            aria-label="Projects"
+          >
+            <PiFolderOpenThin className="text-lg md:text-xl" />
+          </a>
+          <a
+            href="#about"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-200 transition hover:bg-white/8 hover:text-white md:h-11 md:w-11"
+            aria-label="About"
+          >
+            <PiUserThin className="text-lg md:text-xl" />
+          </a>
+          <a
+            href="#about"
+            className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-sm font-medium text-zinc-100 transition hover:border-white/20 hover:bg-white/6 md:px-4"
+          >
+            <PiHandWavingThin className="text-base md:text-lg" />
+            <span className="hidden md:inline">Get in touch</span>
+          </a>
+        </div>
+      </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -1,97 +1,77 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { PiGithubLogo, PiLinkedinLogo, PiTwitterLogo, PiArrowUp, PiEnvelopeSimple, PiPhone } from 'react-icons/pi'
+import { motion } from "framer-motion";
+import { PiArrowUp, PiEnvelopeSimple, PiGithubLogo, PiLinkedinLogo, PiPhone } from "react-icons/pi";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const socialLinks = [
-    { icon: <PiGithubLogo />, href: "https://github.com/crississipi", label: "GitHub" },
-    { icon: <PiLinkedinLogo />, href: "https://www.linkedin.com/in/crismalipico", label: "LinkedIn" },
-    { icon: <PiPhone />, href: "tel:+639243591199", label: "Phone" },
-    { icon: <PiEnvelopeSimple />, href: "mailto:crismalipico12@gmail.com", label: "Email" },
+    { icon: <PiGithubLogo className="text-xl" />, href: "https://github.com/crississipi", label: "GitHub" },
+    { icon: <PiLinkedinLogo className="text-xl" />, href: "https://www.linkedin.com/in/crismalipico", label: "LinkedIn" },
+    { icon: <PiPhone className="text-xl" />, href: "tel:+639243591199", label: "Phone" },
+    { icon: <PiEnvelopeSimple className="text-xl" />, href: "mailto:crismalipico12@gmail.com", label: "Email" },
   ];
 
   return (
-    <footer className="w-full relative z-30 bg-[#060709] pt-20 pb-10 overflow-hidden">
-        {/* Decorative Top Gradient Line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-zinc-700 to-transparent opacity-50"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-linear-to-r from-transparent via-[#2ED3FF] to-transparent shadow-[0_0_10px_#2ED3FF] opacity-30"></div>
+    <footer className="relative z-30 w-full overflow-hidden border-t border-white/10 bg-[#0b0b0b] py-10">
+      <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="text-center md:text-left"
+          >
+            <h3 className="text-2xl text-white">Cris Julius Malipico</h3>
+            <p className="mt-2 text-sm text-zinc-400">
+              Building refined digital products with clarity, precision, and momentum.
+            </p>
+          </motion.div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-20 relative z-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-                
-                {/* Brand / Left Side */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="flex flex-col items-center md:items-start text-center md:text-left gap-2"
-                >
-                    <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-zinc-400 font-shippori">
-                        Cris Julius Malipico
-                    </h3>
-                    <p className="text-zinc-500 text-sm max-w-xs">
-                        Crafting seamless digital experiences with pixel-perfect precision.
-                    </p>
-                </motion.div>
-
-                {/* Social Links */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex gap-4"
-                >
-                    {socialLinks.map((link, idx) => (
-                        <a 
-                            key={idx}
-                            href={link.href}
-                            aria-label={link.label}
-                            className="p-3 rounded-full bg-white/5 border border-white/5 text-zinc-400 hover:text-white hover:bg-white/10 hover:border-white/10 transition-all duration-300 hover:scale-110"
-                        >
-                            <span className="text-xl">{link.icon}</span>
-                        </a>
-                    ))}
-                </motion.div>
-            </div>
-
-            {/* Bottom Section */}
-            <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
-            >
-                <p className="text-zinc-600 text-sm">
-                    © {currentYear} All rights reserved.
-                </p>
-
-                <button 
-                    onClick={scrollToTop}
-                    className="group flex items-center gap-2 text-sm text-zinc-500 hover:text-[#2ED3FF] transition-colors"
-                >
-                    Back to top
-                    <span className="p-1 rounded-full bg-white/5 group-hover:bg-[#2ED3FF]/10 transition-colors">
-                        <PiArrowUp className="group-hover:-translate-y-0.5 transition-transform" />
-                    </span>
-                </button>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.08 }}
+            className="flex items-center gap-3"
+          >
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                aria-label={link.label}
+                className="rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+              >
+                {link.icon}
+              </a>
+            ))}
+          </motion.div>
         </div>
-        
-        {/* Background Glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#2ED3FF]/5 blur-[100px] rounded-full pointer-events-none" />
-    </footer>
-  )
-}
 
-export default Footer
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.14 }}
+          className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-zinc-400 md:flex-row"
+        >
+          <p>© {currentYear} Cris Julius Malipico. All rights reserved.</p>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-zinc-200 hover:border-white/20 hover:text-white"
+          >
+            Back to top
+            <PiArrowUp className="text-sm" />
+          </button>
+        </motion.div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
