@@ -106,15 +106,15 @@ const Hero = () => {
         width={4098}
         alt=""
         src="/portfolio-cyborg.png"
-        className="absolute h-full w-max object-contain object-top left-20 top-0 border z-1"
+        className="absolute h-full w-max object-contain object-top lg-0 lg:left-20 top-0 border z-1"
       />
-      <div className="absolute z-10 h-screen w-full bg-linear-to-b from-[#0d0d0d] via-24% via-transparent to-95% to-[#0d0d0d] top-0 left-0"/>
-      <div className="grid w-full max-w-7xl items-center gap-5 lg:grid-cols-[1.15fr_0.85fr] z-40">
+      <div className="absolute z-10 h-screen w-full bg-linear-to-b from-[#0d0d0d] via-24% via-transparent to-60% lg:to-95% to-[#0d0d0d] top-0 left-0"/>
+      <div className="grid w-full h-full max-w-7xl items-center gap-5 lg:grid-cols-[1.15fr_0.85fr] z-40">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative flex flex-col mt-auto"
+          className="relative flex flex-col mt-100 lg:mt-auto"
         >
           <div className="mb-3 w-max inline-flex items-center gap-2 rounded-full bg-white/[0.03] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.32em] text-zinc-300">
             Self-taught Full-Stack Developer
@@ -131,17 +131,17 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 grid grid-cols-6 lg:flex lg:flex-wrap items-center gap-4">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/6 px-5 py-3 text-sm font-medium text-white hover:border-white/20 hover:bg-white/10"
+              className="col-span-3 inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/6 px-5 py-3 text-sm font-medium text-white hover:border-white/20 hover:bg-white/10"
             >
               View work
               <PiArrowRight className="text-base" />
             </a>
             <a
               href="mailto:crismalipico12@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-3 text-sm font-medium text-zinc-200 hover:border-white/20 hover:text-white"
+              className="col-span-3 inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-3 text-sm font-medium text-zinc-200 hover:border-white/20 hover:text-white"
             >
               <PiEnvelopeSimple className="text-base" />
               Email me
@@ -151,7 +151,7 @@ const Hero = () => {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+              className="col-span-1 aspect-square rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
             >
               <PiGithubLogo className="text-xl" />
             </a>
@@ -160,14 +160,14 @@ const Hero = () => {
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+              className="col-span-1 aspect-square rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
             >
               <PiLinkedinLogo className="text-xl" />
             </a>
             <a
               href="tel:+639243591199"
               aria-label="Phone"
-              className="rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+              className="col-span-1 aspect-square rounded-full border border-white/10 bg-white/[0.02] p-3 text-zinc-200 hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
             >
               <PiPhone className="text-xl" />
             </a>
