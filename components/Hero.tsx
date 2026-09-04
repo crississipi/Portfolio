@@ -120,7 +120,7 @@ const Hero = () => {
             Self-taught Full-Stack Developer
           </div>
 
-          <h1 className="w-full text-5xl text-white md:text-6xl lg:text-7xl flex gap-4">
+          <h1 className="flex w-full flex-col gap-1 text-5xl text-white md:flex-row md:gap-4 md:text-6xl lg:text-7xl">
             <span>Cris Julius</span>
             <span className="block text-zinc-400">Malipico</span>
           </h1>

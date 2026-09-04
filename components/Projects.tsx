@@ -38,7 +38,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">REST</span>, name: "REST APIs" },
     ],
     links: { live: "https://ontap.ph", repo: "" },
-    snapshots: ["/projects/ontap/ontap-1.jfif", "/projects/ontap/ontap-2.jfif", "/projects/ontap/ontap-3.jfif", "/projects/ontap/ontap-4.jfif", "/projects/ontap/ontap-5.jfif"],
+    snapshots: ["/projects/ontap/ontap-1.jpg", "/projects/ontap/ontap-2.jpg", "/projects/ontap/ontap-3.jpg", "/projects/ontap/ontap-4.jpg", "/projects/ontap/ontap-5.jpg"],
   },
   {
     id: 3,
@@ -56,7 +56,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">JWT</span>, name: "JWT" },
     ],
     links: { live: "", repo: "" },
-    snapshots: ["/projects/rok/rok-1.jfif", "/projects/rok/rok-2.jfif", "/projects/rok/rok-3.jfif", "/projects/rok/rok-4.jfif", "/projects/rok/rok-5.jfif"],
+    snapshots: ["/projects/rok/rok-1.jpg", "/projects/rok/rok-2.jpg", "/projects/rok/rok-3.jpg", "/projects/rok/rok-4.jpg", "/projects/rok/rok-5.jpg"],
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">JWT</span>, name: "JWT" },
     ],
     links: { live: "https://project-documentation-system.vercel.app", repo: "" },
-    snapshots: ["/projects/documentation/docu-1.jfif", "/projects/documentation/docu-2.jfif", "/projects/documentation/docu-3.jfif", "/projects/documentation/docu-4.jfif", "/projects/documentation/docu-5.jfif"],
+    snapshots: ["/projects/documentation/docu-1.jpg", "/projects/documentation/docu-2.jpg", "/projects/documentation/docu-3.jpg", "/projects/documentation/docu-4.jpg", "/projects/documentation/docu-5.jpg"],
   },
   {
     id: 5,
@@ -90,7 +90,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">Open</span>, name: "OpenRouter" },
     ],
     links: { live: "https://smartspec-s.vercel.app/", repo: "" },
-    snapshots: ["/projects/smartspecs/smartspecs-1.jfif", "/projects/smartspecs/smartspecs-2.jfif", "/projects/smartspecs/smartspecs-3.jfif", "/projects/smartspecs/smartspecs-4.jfif", "/projects/smartspecs/smartspecs-5.jfif"],
+    snapshots: ["/projects/smartspecs/smartspecs-1.jpg", "/projects/smartspecs/smartspecs-2.jpg", "/projects/smartspecs/smartspecs-3.jpg", "/projects/smartspecs/smartspecs-4.jpg", "/projects/smartspecs/smartspecs-5.jpg"],
   },
   {
     id: 6,
@@ -143,6 +143,119 @@ const projectsData = [
   },
 ];
 
+type Project = (typeof projectsData)[number];
+
+type ProjectDetailsProps = {
+  project: Project;
+  currentSlide: number;
+  isLoading: boolean;
+  onLoad: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
+};
+
+const ProjectDetails = ({
+  project,
+  currentSlide,
+  isLoading,
+  onLoad,
+  onPrevious,
+  onNext,
+}: ProjectDetailsProps) => (
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={project.id}
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -18 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="rounded-[28px] border border-white/10 bg-[#101010]/80 p-4 shadow-[0_26px_80px_rgba(0,0,0,0.32)] md:p-5"
+    >
+      <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#141414]">
+        <div className="relative aspect-[16/10] w-full">
+          {isLoading && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#111111]">
+              <PiCircleNotch className="animate-spin text-3xl text-zinc-200" />
+            </div>
+          )}
+
+          <Image
+            src={project.snapshots[currentSlide]}
+            alt={project.title}
+            fill
+            className="object-cover"
+            onLoad={onLoad}
+          />
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4">
+          <div className="flex items-center gap-2">
+            {project.snapshots.map((_, index) => (
+              <span
+                key={index}
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/35"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onPrevious}
+              className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-zinc-200 hover:border-white/20 hover:bg-white/[0.08]"
+              aria-label="Previous slide"
+            >
+              <PiCaretLeftBold className="text-sm" />
+            </button>
+            <button
+              type="button"
+              onClick={onNext}
+              className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-zinc-200 hover:border-white/20 hover:bg-white/[0.08]"
+              aria-label="Next slide"
+            >
+              <PiCaretRightBold className="text-sm" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <h3 className="text-2xl text-white md:text-3xl">{project.title}</h3>
+        <div className="mt-2 flex flex-wrap gap-4 text-sm text-zinc-400">
+          {project.links.repo && (
+            <a href={project.links.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-white">
+              <PiGithubLogo className="text-base" />
+              Source code
+            </a>
+          )}
+          {project.links.live && (
+            <a href={project.links.live} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-white">
+              <PiGlobe className="text-base" />
+              Live demo
+            </a>
+          )}
+        </div>
+
+        <p className="mt-5 text-base leading-7 text-zinc-300">{project.description}</p>
+
+        <div className="mt-6 flex flex-wrap gap-2.5">
+          {project.tech.map((item) => (
+            <span
+              key={item.name}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-xs text-zinc-200"
+            >
+              {item.icon}
+              {item.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  </AnimatePresence>
+);
+
 const Projects = () => {
   const [selectedId, setSelectedId] = useState(projectsData[0].id);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -189,128 +302,55 @@ const Projects = () => {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.4fr]">
           <div className="space-y-4">
             {projectsData.map((project) => (
-              <button
-                key={project.id}
-                type="button"
-                onClick={() => changeProject(project.id)}
-                className={`group w-full rounded-[24px] border p-5 text-left transition-all duration-300 ${
-                  selectedId === project.id
-                    ? "border-white/20 bg-white/[0.04]"
-                    : "border-white/10 bg-[#111111]/60 hover:border-white/20 hover:bg-white/[0.03]"
-                }`}
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl text-white">{project.title}</h3>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-zinc-500">{project.category}</p>
+              <div key={project.id} className="space-y-3">
+                <button
+                  type="button"
+                  onClick={() => changeProject(project.id)}
+                  aria-expanded={selectedId === project.id}
+                  className={`group w-full rounded-[24px] border p-4 text-left transition-all duration-300 md:p-5 ${
+                    selectedId === project.id
+                      ? "border-white/20 bg-white/[0.04]"
+                      : "border-white/10 bg-[#111111]/60 hover:border-white/20 hover:bg-white/[0.03]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="break-words text-lg text-white md:text-xl">{project.title}</h3>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-zinc-500">{project.category}</p>
+                    </div>
+                    <PiArrowRight
+                      className={`shrink-0 text-lg transition-transform duration-300 ${
+                        selectedId === project.id ? "translate-x-1 rotate-90 text-white" : "text-zinc-500 group-hover:translate-x-1 group-hover:text-white"
+                      }`}
+                    />
                   </div>
-                  <PiArrowRight
-                    className={`text-lg transition-transform duration-300 ${
-                      selectedId === project.id ? "translate-x-1 text-white" : "text-zinc-500 group-hover:translate-x-1 group-hover:text-white"
-                    }`}
-                  />
-                </div>
-              </button>
+                </button>
+
+                {selectedId === project.id && (
+                  <div className="lg:hidden">
+                    <ProjectDetails
+                      project={selectedProject}
+                      currentSlide={currentSlide}
+                      isLoading={isLoading}
+                      onLoad={() => setIsLoading(false)}
+                      onPrevious={handlePrevSlide}
+                      onNext={handleNextSlide}
+                    />
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedProject.id}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="rounded-[28px] border border-white/10 bg-[#101010]/80 p-4 shadow-[0_26px_80px_rgba(0,0,0,0.32)] md:p-5"
-              >
-                <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#141414]">
-                  <div className="relative aspect-[16/10] w-full">
-                    {isLoading && (
-                      <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#111111]">
-                        <PiCircleNotch className="animate-spin text-3xl text-zinc-200" />
-                      </div>
-                    )}
-
-                    <Image
-                      src={selectedProject.snapshots[currentSlide]}
-                      alt={selectedProject.title}
-                      fill
-                      className="object-cover"
-                      onLoad={() => setIsLoading(false)}
-                    />
-                  </div>
-
-                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4">
-                    <div className="flex items-center gap-2">
-                      {selectedProject.snapshots.map((_, index) => (
-                        <span
-                          key={index}
-                          className={`block h-1.5 rounded-full transition-all duration-300 ${
-                            index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/35"
-                          }`}
-                        />
-                      ))}
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handlePrevSlide}
-                        className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-zinc-200 hover:border-white/20 hover:bg-white/[0.08]"
-                        aria-label="Previous slide"
-                      >
-                        <PiCaretLeftBold className="text-sm" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleNextSlide}
-                        className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-zinc-200 hover:border-white/20 hover:bg-white/[0.08]"
-                        aria-label="Next slide"
-                      >
-                        <PiCaretRightBold className="text-sm" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div>
-                      <h3 className="text-3xl text-white">{selectedProject.title}</h3>
-                      <div className="mt-2 flex flex-wrap gap-4 text-sm text-zinc-400">
-                        {selectedProject.links.repo && (
-                          <a href={selectedProject.links.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-white">
-                            <PiGithubLogo className="text-base" />
-                            Source code
-                          </a>
-                        )}
-                        {selectedProject.links.live && (
-                          <a href={selectedProject.links.live} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-white">
-                            <PiGlobe className="text-base" />
-                            Live demo
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="mt-5 text-base leading-7 text-zinc-300">{selectedProject.description}</p>
-
-                  <div className="mt-6 flex flex-wrap gap-2.5">
-                    {selectedProject.tech.map((item) => (
-                      <span
-                        key={item.name}
-                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-xs text-zinc-200"
-                      >
-                        {item.icon}
-                        {item.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          <div className="relative hidden lg:block">
+            <ProjectDetails
+              project={selectedProject}
+              currentSlide={currentSlide}
+              isLoading={isLoading}
+              onLoad={() => setIsLoading(false)}
+              onPrevious={handlePrevSlide}
+              onNext={handleNextSlide}
+            />
           </div>
         </div>
       </div>
