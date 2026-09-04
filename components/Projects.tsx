@@ -12,7 +12,6 @@ import {
   PiGlobe,
 } from "react-icons/pi";
 import {
-  SiHostinger,
   SiMysql,
   SiNextdotjs,
   SiNodedotjs,
@@ -39,7 +38,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">REST</span>, name: "REST APIs" },
     ],
     links: { live: "https://ontap.ph", repo: "" },
-    snapshots: ["/ontap-1.jfif", "/ontap-2.jfif", "/ontap-3.jfif", "/ontap-4.jfif", "/ontap-5.jfif"],
+    snapshots: ["/projects/ontap/ontap-1.jfif", "/projects/ontap/ontap-2.jfif", "/projects/ontap/ontap-3.jfif", "/projects/ontap/ontap-4.jfif", "/projects/ontap/ontap-5.jfif"],
   },
   {
     id: 3,
@@ -57,7 +56,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">JWT</span>, name: "JWT" },
     ],
     links: { live: "", repo: "" },
-    snapshots: ["/rok-1.jfif", "/rok-2.jfif", "/rok-3.jfif", "/rok-4.jfif", "/rok-5.jfif"],
+    snapshots: ["/projects/rok/rok-1.jfif", "/projects/rok/rok-2.jfif", "/projects/rok/rok-3.jfif", "/projects/rok/rok-4.jfif", "/projects/rok/rok-5.jfif"],
   },
   {
     id: 4,
@@ -75,7 +74,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">JWT</span>, name: "JWT" },
     ],
     links: { live: "https://project-documentation-system.vercel.app", repo: "" },
-    snapshots: ["/docu-1.jfif", "/docu-2.jfif", "/docu-3.jfif", "/docu-4.jfif", "/docu-5.jfif"],
+    snapshots: ["/projects/documentation/docu-1.jfif", "/projects/documentation/docu-2.jfif", "/projects/documentation/docu-3.jfif", "/projects/documentation/docu-4.jfif", "/projects/documentation/docu-5.jfif"],
   },
   {
     id: 5,
@@ -91,7 +90,7 @@ const projectsData = [
       { icon: <span className="text-[10px] font-bold">Open</span>, name: "OpenRouter" },
     ],
     links: { live: "https://smartspec-s.vercel.app/", repo: "" },
-    snapshots: ["/smartspecs-1.jfif", "/smartspecs-2.jfif", "/smartspecs-3.jfif", "/smartspecs-4.jfif", "/smartspecs-5.jfif"],
+    snapshots: ["/projects/smartspecs/smartspecs-1.jfif", "/projects/smartspecs/smartspecs-2.jfif", "/projects/smartspecs/smartspecs-3.jfif", "/projects/smartspecs/smartspecs-4.jfif", "/projects/smartspecs/smartspecs-5.jfif"],
   },
   {
     id: 6,
@@ -108,7 +107,7 @@ const projectsData = [
       { icon: <SiVercel className="text-zinc-200" />, name: "Vercel" },
     ],
     links: { live: "", repo: "https://github.com/crississipi/Landlord-App" },
-    snapshots: ["/landlord-1.png", "/landlord-2.png", "/landlord-3.png", "/landlord-4.png", "/landlord-5.png"],
+    snapshots: ["/projects/landlord/landlord-1.png", "/projects/landlord/landlord-2.png", "/projects/landlord/landlord-3.png", "/projects/landlord/landlord-4.png", "/projects/landlord/landlord-5.png"],
   },
   {
     id: 7,
@@ -125,7 +124,7 @@ const projectsData = [
       { icon: <SiVercel className="text-zinc-200" />, name: "Vercel" },
     ],
     links: { live: "", repo: "https://github.com/crississipi/Tenant-App" },
-    snapshots: ["/tenant-1.png", "/tenant-2.png", "/tenant-3.png", "/tenant-4.png", "/tenant-5.png"],
+    snapshots: ["/projects/tenant/tenant-1.png", "/projects/tenant/tenant-2.png", "/projects/tenant/tenant-3.png", "/projects/tenant/tenant-4.png", "/projects/tenant/tenant-5.png"],
   },
   {
     id: 8,
@@ -140,7 +139,7 @@ const projectsData = [
       { icon: <SiVercel className="text-zinc-200" />, name: "Vercel" },
     ],
     links: { live: "https://mmorpg-landing-page.vercel.app/", repo: "https://github.com/crississipi/MMORPG-Landing-Page" },
-    snapshots: ["/mmorpg-1.png", "/mmorpg-2.png", "/mmorpg-3.png", "/mmorpg-4.png", "/mmorpg-5.png"],
+    snapshots: ["/projects/mmorpg/mmorpg-1.png", "/projects/mmorpg/mmorpg-2.png", "/projects/mmorpg/mmorpg-3.png", "/projects/mmorpg/mmorpg-4.png", "/projects/mmorpg/mmorpg-5.png"],
   },
 ];
 

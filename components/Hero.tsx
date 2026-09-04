@@ -38,8 +38,11 @@ const Hero = () => {
     name: "",
     contact: "",
     message: "",
+    website: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
 
   const validateForm = () => {
     const nextErrors: Record<string, string> = {};
@@ -55,13 +58,28 @@ const Hero = () => {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (validateForm()) {
-      console.log("Portfolio contact form submitted", {
-        ...formData,
-        selectedMode,
+    if (!validateForm() || !selectedMode) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, mode: selectedMode }),
       });
+
+      if (!response.ok) throw new Error("Inquiry request failed");
+      setFormData({ name: "", contact: "", message: "", website: "" });
+      setSelectedMode(null);
+      setSubmitStatus("success");
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -177,6 +195,16 @@ const Hero = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={(event) => setFormData((previous) => ({ ...previous, website: event.target.value }))}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
               <div className="grid gap-5 md:grid-cols-2">
                 <div className="space-y-2">
                   <label className="block text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-400">
@@ -320,11 +348,18 @@ const Hero = () => {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/12 bg-white px-5 py-3.5 text-sm font-medium text-black hover:bg-zinc-200"
               >
-                Send inquiry
+                {isSubmitting ? "Sending..." : "Send inquiry"}
                 <PiPaperPlaneTiltThin className="text-base" />
               </button>
+              {submitStatus === "success" && (
+                <p className="text-sm text-emerald-300" role="status">Thanks, your inquiry has been sent.</p>
+              )}
+              {submitStatus === "error" && (
+                <p className="text-sm text-red-300" role="alert">Unable to send your inquiry. Please try again.</p>
+              )}
             </form>
           </div>
         </motion.div>

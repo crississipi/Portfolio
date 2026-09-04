@@ -80,7 +80,7 @@ const About = () => {
           <a
             href={resumeUrl}
             download
-            className="mt-7 flex w-full items-center justify-center gap-3 rounded-2xl border border-black/10 bg-white px-5 py-3.5 text-sm font-medium text-black hover:bg-zinc-200"
+            className="mt-7 flex w-full items-center justify-center gap-3 rounded-2xl border border-black/10 bg-white px-5 py-3.5 text-sm font-medium text-black hover:bg-zinc-200 [&_*]:text-black"
           >
             <PiDownloadSimple className="text-lg text-black" />
             Download résumé
